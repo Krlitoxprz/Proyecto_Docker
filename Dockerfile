@@ -2,8 +2,7 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 WORKDIR /code
-COPY app/requirements.txt /code/
+COPY app/ /code/
 RUN pip install --no-cache-dir -r requirements.txt
-COPY app/ /code/app/
 EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app", "--workers", "3"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "run:app", "--workers", "3"]
